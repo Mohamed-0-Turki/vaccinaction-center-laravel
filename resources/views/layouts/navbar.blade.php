@@ -7,9 +7,9 @@
     <!-- Navigation Links -->
     <div class="hidden md:flex gap-6 text-gray-700 font-medium">
         <a href="#" class="hover:text-blue-600 transition">Admins</a>
-        <a href="#" class="hover:text-blue-600 transition">Cities</a>
+        <a href="{{ route('admin.cities.index') }}" class="hover:text-blue-600 transition">Cities</a>
         <a href="#" class="hover:text-blue-600 transition">Vaccines</a>
-        <a href="#" class="hover:text-blue-600 transition">Centers</a>
+        <a href="{{ route('admin.centers.index') }}" class="hover:text-blue-600 transition">Centers</a>
     </div>
 
     <!-- Auth Buttons -->
