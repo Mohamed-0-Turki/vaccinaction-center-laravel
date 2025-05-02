@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     // Show the login form
-    public function showLoginForm()
+    public function create()
     {
         return view('auth.login');
     }
@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         // Attempt login
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/admin'); // Redirect to admin dashboard or homepage
+            return redirect()->intended('/'); // Redirect to admin dashboard or homepage
         }
 
         // Return back with error message if login fails
@@ -34,9 +34,14 @@ class LoginController extends Controller
     }
 
     // Handle logout
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/');
     }
 }

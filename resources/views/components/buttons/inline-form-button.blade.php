@@ -3,8 +3,6 @@
     style="background-color: {{ $backgroundColor ?? '#3490dc' }}"
     action="{{ $action ?? '#' }}"
     method="{{ $method ?? 'POST' }}"
-    x-data="{ isLoading: false }"
-    x-on:submit="isLoading = true"
 >
     @csrf
     @if (!empty($actualMethod))
@@ -14,24 +12,16 @@
     <button
         class="w-full h-full flex gap-3 items-center justify-center focus:outline-none"
         type="submit"
-        x-bind:disabled="isLoading"
     >
         @if (!empty($slot) || !empty($icon))
             <div class="w-max h-full flex gap-3 items-center justify-center">
-                <!-- Loading Spinner (if loading) -->
-                <template x-if="isLoading">
-                    <i class="fa-solid fa-spinner fa-spin"></i>
-                </template>
-
-                <!-- Icon (if provided and not loading) -->
-                <template x-if="!isLoading && '{{ $icon }}'">
+                @if (!empty($icon))
                     <i class="{{ $icon }}"></i>
-                </template>
+                @endif
 
-                <!-- Text (if provided and not loading) -->
-                <template x-if="!isLoading && '{{ trim($slot) }}'">
+                @if (trim($slot))
                     <span>{{ $slot }}</span>
-                </template>
+                @endif
             </div>
         @endif
     </button>
