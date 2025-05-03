@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         // Attempt login
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/'); // Redirect to admin dashboard or homepage
+            return redirect()->intended('/admin/users'); // Redirect to admin dashboard or homepage
         }
 
         // Return back with error message if login fails
